@@ -29,7 +29,7 @@ def post_list(request, tag_slug=None):
         tag = get_object_or_404(Tag, slug=tag_slug)
         object_list = object_list.filter(tags__in=[tag])
 
-    paginator = Paginator(object_list, 3) # 3 posts in each page
+    paginator = Paginator(object_list, 30) # 30 posts in each page
     page = request.GET.get('page')
 
     try:
@@ -74,6 +74,7 @@ def post_detail(request, year, month, day, post):
             return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
     else:
         comment_form = CommentForm()
+
 
     return render(request,
                   'blog/post/detail.html',

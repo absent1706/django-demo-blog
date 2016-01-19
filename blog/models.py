@@ -3,6 +3,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from taggit.managers import TaggableManager
+from django.db.models import Count
 
 class PublishedManager(models.Manager):
     def get_queryset(self):
@@ -46,6 +47,17 @@ class Post(models.Model):
                               self.publish.strftime('%m'),
                               self.publish.strftime('%d'),
                               self.slug])
+
+    def similar_posts(self):
+        # List of similar posts
+        post_tags_ids = self.tags.values_list('id', flat=True)
+        similar_posts = self.__class__.published.filter(tags__in=post_tags_ids)\
+                                      .exclude(id=self.id)
+        similar_posts = similar_posts.annotate(same_tags=Count('tags'))\
+                                     .order_by('-same_tags','-publish')[:4]
+        # or use post.tags.similar_objects()
+        return similar_posts
+
 
 class Comment(models.Model):
     post    = models.ForeignKey(Post, related_name='comments') # 'comments' means we can get post comments as mypost.comments (backward relation)

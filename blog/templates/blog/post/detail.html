@@ -16,8 +16,20 @@
         Share this post
     </a>
 </p>
+
+<hr>
+{% if post.similar_objects %}
+    <h2>Similar posts</h2>
+    {% for post in post.similar_objects %}
+        <p>
+        <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+        </p>
+    {% endfor %}
+{% endif %}
+
 <hr>
 
+{# Comments #}
 <div class="well">
     <h4>Add a new comment</h4>
     <form action="." method="post">

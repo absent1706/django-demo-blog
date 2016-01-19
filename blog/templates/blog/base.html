@@ -41,12 +41,7 @@
             <div class="col-md-8">
 
                 <!-- Flash messages -->
-                {% if messages %}
-                    {% for message in messages %}
-                    {{ message.tags }}
-                        <div class="alert {% if message.tags %} alert-{{ message.tags }} {% else %} alert-info {% endif %}" role="alert">{{ message }}</div>
-                    {% endfor %}
-                {% endif %}
+                {% include "blog/shared/_flash.html"%}
 
                 {% block content %}
                 {% endblock %}

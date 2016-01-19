@@ -1,0 +1,13 @@
+{% load i18n widget_tweaks %}
+{% csrf_token %}
+{% for field in form %}
+        <div class="form-group {% if field.errors %} has-error {% endif %}">
+            <label class="control-label" for="id_{{ field.name }}">{{ field.label }}</label>
+            {{ field|attr:"class:form-control" }}
+            {% if field.errors %}
+                <p class="help-block">
+                    {% for error in  field.errors %}{{ error }}{% endfor %}
+                </p>
+            {% endif %}
+        </div>
+{% endfor %}

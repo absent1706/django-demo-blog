@@ -1,40 +1,11 @@
 {% extends "blog/base.html" %}
 {% block title %}Share a post{% endblock %}
 {% block content %}
-{% if sent %}
-    <h1>E-mail successfully sent</h1>
-    <p>
-        "{{ post.title }}" was successfully sent to {{ form.to.value }}.
-    </p>
-{% else %}
-    <h1 class="page-header">Share "{{ post.title }}" by e-mail</h1>
+<h1 class="page-header">Share "{{ post.title }}" by e-mail</h1>
 
-    <!--
-    <form action="." method="post">
-        {{ form.as_p }}
-        {% csrf_token %}
-        <input type="submit" value="Send e-mail">
-    </form>
-    -->
+<form role="form" action="." method="post">
+    {% include "blog/shared/_form.html" %}
 
-    {% load i18n widget_tweaks %}
-
-    <form class="form-horizontal" role="form" action="." method="post">
-        {% csrf_token %}
-        {% for field in form %}
-                <div class="form-group {% if field.errors %} has-error {% endif %}">
-                    <label class="control-label" for="id_{{ field.name }}">{{ field.label }}</label>
-                    {{ field|attr:"class:form-control" }}
-                    {% if field.errors %}
-                        <p class="help-block">
-                            {% for error in  field.errors %}{{ error }}{% endfor %}
-                        </p>
-                    {% endif %}
-                </div>
-        {% endfor %}
-
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-
-{% endif %}
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
 {% endblock %}

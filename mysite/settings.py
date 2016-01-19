@@ -40,6 +40,7 @@ INSTALLED_APPS = (
 
     # third-party
     'widget_tweaks',
+    'taggit',
 
     # local
     'blog'

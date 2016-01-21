@@ -3,6 +3,7 @@ from 'Django by Example' book (https://www.packtpub.com/web-development/django-e
 
 ## Screenshots:
  * http://www.qopy.me/4ZAqi-mDS_KHvSNQP0RGfw
+ * http://www.qopy.me/sMu62ADSQECJ-uNuz5peAA
  * http://www.qopy.me/ycRNLQOsSFWL9eCteAmqBQ
  * http://www.qopy.me/TeSw4VEVR26R_slo5aRsMA
 

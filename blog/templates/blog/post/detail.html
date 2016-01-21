@@ -2,6 +2,7 @@
 {% block title %}{{ post.title }}{% endblock %}
 {% block content %}
 
+{% load blog_tags %}
 <h2> {{ post.title }} </h2>
 <p>
     <span class="glyphicon glyphicon-time"></span>
@@ -10,7 +11,7 @@
 <hr>
 <img class="img-responsive" src="http://placehold.it/900x300" alt="">
 <hr>
-<p> {{ post.body|linebreaks }} </p>
+<p> {{ post.body|markdown }} </p>
 <p>
     <a href="{% url "blog:post_share" post.id %}">
         Share this post

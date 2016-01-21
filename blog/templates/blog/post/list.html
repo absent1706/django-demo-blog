@@ -2,6 +2,8 @@
 {% block title %}My Blog{% endblock %}
 {% block content %}
 
+{% load blog_tags %}
+
 <h1 class="page-header">
     {% if tag %} Posts tagged with "{{ tag.name }}" {% else %} All posts {% endif %}
 </h1>
@@ -26,7 +28,7 @@
         {% endfor %}
     </p>
 
-    {{ post.body|truncatewords:30|linebreaks }}
+    {{ post.body|markdown|truncatewords_html:30 }}
 
     <hr>
 {% endfor %}

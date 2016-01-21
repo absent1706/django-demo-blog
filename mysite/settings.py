@@ -38,6 +38,10 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # additional django apps
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
+
     # third-party
     'widget_tweaks',
     'taggit',
@@ -45,6 +49,9 @@ INSTALLED_APPS = (
     # local
     'blog'
 )
+
+# for django.contrib.sites
+SITE_ID = 1
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',

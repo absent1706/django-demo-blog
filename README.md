@@ -8,4 +8,4 @@ from 'Django by Example' book (https://www.packtpub.com/web-development/django-e
 
 
 ## Attention!
-To search with SOLR, follow instructions from 'Django By Example' (chapter 3)
+To search with SOLR, follow instructions from 'Django By Example' (chapter 3, 'Adding a search engine with Solr and Haystack')

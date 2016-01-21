@@ -45,13 +45,11 @@ INSTALLED_APPS = (
     # third-party
     'widget_tweaks',
     'taggit',
+    'haystack', # for working with SOLR
 
     # local
     'blog'
 )
-
-# for django.contrib.sites
-SITE_ID = 1
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -115,7 +113,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-### ~~~ ###
+### ~~~ my custom settings ~~~ ###
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'blog','static'),
@@ -124,3 +122,15 @@ STATICFILES_DIRS = (
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # EMAIL_HOST = 'localhost'
 # EMAIL_PORT = 1025
+
+
+# for django.contrib.sites
+SITE_ID = 1
+
+# for solr
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.solr_backend.SolrEngine',
+        'URL': 'http://127.0.0.1:8983/solr/blog'
+    },
+}

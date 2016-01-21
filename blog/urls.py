@@ -14,5 +14,7 @@ urlpatterns = [
     url(r'^(?P<post_id>\d+)/share/$', views.post_share,
         name='post_share'),
 
-    url(r'^feed/$', LatestPostsFeed(), name='post_feed')
+    url(r'^feed/$', LatestPostsFeed(), name='post_feed'),
+
+    url(r'^search/$', views.post_search, name='post_search')
 ]

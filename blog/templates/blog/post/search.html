@@ -1,0 +1,37 @@
+{% extends "blog/base.html" %}
+{% block title %}Search{% endblock %}
+
+{% block content %}
+{% load blog_tags %}
+
+<h3 class="page-header">Search</h3>
+<form action="{% url "blog:post_search" %}" method="get">
+    <div class="input-group">
+        <input type="text" class="form-control" name="query" placeholder="Search for..." {% if cd.query %} value={{ cd.query }} {% endif %}>
+
+        <span class="input-group-btn">
+            <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+        </span>
+    </div>
+</form>
+
+{% if "query" in request.GET %}
+    <h3>Found {{ results.count }} result{{ results.count|pluralize }} for "{{ cd.query }}"</h3>
+    <hr>
+
+    {% for result in results %}
+        {% with result.object as post %}
+            <p>
+                <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+            </p>
+            {{ post.body|markdown|truncatewords_html:5 }}
+            <hr>
+            <hr>
+            <hr>
+        {% endwith %}
+    {% empty %}
+        <p>There are no results for your query.</p>
+    {% endfor %}
+{% endif %}
+
+{% endblock %}
